@@ -1,21 +1,22 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { Pokemon } from '../pokemon/pokemon';
 import { PokemonComponent } from '../pokemon/pokemon.component';
+import { PokemonService } from '../pokemon.service';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-home',
-  imports: [PokemonComponent],
+  imports: [PokemonComponent, CommonModule],
   templateUrl: './home.component.html',
   styleUrl: './home.component.css',
 })
 export class HomeComponent {
-  // readonly baseUrl = 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/1.png'
-  readonly baseUrl =
-    'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon';
+  
+pokemonList:Pokemon [] = [];
 
-  pokemon: Pokemon = {
-    id: 1,
-    name: 'Bulbasaur',
-    image: `${this.baseUrl}/1.png`,
-  };
+pokemonService:PokemonService = inject(PokemonService);
+
+constructor(){
+  this.pokemonList = this.pokemonService.getAllPokemon();
+}
 }
