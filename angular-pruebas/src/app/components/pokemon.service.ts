@@ -1,6 +1,5 @@
-import { Injectable } from '@angular/core';
-import { Pokemon } from './pokemon/pokemon';
-
+import { Pokemon } from "./pokemon/pokemon";
+import { Injectable } from "@angular/core";
 @Injectable({
   providedIn: 'root',
 })
@@ -11,8 +10,8 @@ export class PokemonService {
   async getAllPokemon(): Promise<Pokemon[]> {
     try {
       const response = await fetch(this.url);
-      const data = await response.json();  // Convertir la respuesta a formato JSON
-
+      const data = await response.json();
+      
       if (data.results) {
         const pokemonList = await Promise.all(
           data.results.map(async (pokemon: { name: string; url: string }) => {
@@ -30,7 +29,7 @@ export class PokemonService {
       }
     } catch (error) {
       console.error('Error al obtener los Pokémon:', error);
-      throw error;  // Lanza el error para que el componente pueda manejarlo
+      throw error;
     }
   }
 
@@ -40,5 +39,24 @@ export class PokemonService {
     return await response.json();
   }
 
- 
+  // Método para buscar un Pokémon por nombre o id
+  async searchPokemon(searchTerm: string): Promise<any[]> {
+    const searchUrl = `${this.url}/${searchTerm.toLowerCase()}`;  // Construir URL para buscar por nombre o id
+    try {
+      const response = await fetch(searchUrl);
+      if (response.ok) {
+        const data = await response.json();
+        return [{
+          name: data.name,
+          id: data.id,
+          image: data.sprites.front_default,
+        }];
+      } else {
+        return [];  // Si no se encuentra ningún Pokémon
+      }
+    } catch (error) {
+      console.error('Error al buscar el Pokémon:', error);
+      return [];
+    }
+  }
 }
