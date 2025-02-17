@@ -50,6 +50,9 @@ export class PokemonService {
           name: data.name,
           id: data.id,
           image: data.sprites.front_default,
+          type: data.types[0].type.name,
+          weight: data.weight,
+          height: data.height
         }];
       } else {
         return [];  // Si no se encuentra ningún Pokémon

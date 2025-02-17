@@ -7,5 +7,5 @@ import { Pokemon } from './pokemon';
   styleUrls: ['./pokemon.component.css'],
 })
 export class PokemonComponent {
-  @Input() pokemon!: Pokemon;  // Recibe un Pokémon como entrada
+  @Input() pokemon!: Pokemon; 
 }

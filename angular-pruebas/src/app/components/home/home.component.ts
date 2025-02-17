@@ -13,20 +13,21 @@ import { FormsModule } from '@angular/forms';
 })
 export class HomeComponent {
   pokemonList: Pokemon[] = []; // Todos los Pokémon obtenidos
-  searchTerm: string = ''; // Término de búsqueda
+  searchTerm: string = '1'; // Término de búsqueda
   pokemonService: PokemonService = inject(PokemonService);
   noResults: boolean = false; // Flag para indicar si no hay resultados
 
   constructor() {
-    this.pokemonService
-      .getAllPokemon()
-      .then((pokemonList: Pokemon[]) => {
-        this.pokemonList = pokemonList;
-        // Inicializar con todos los Pokémon
-      })
-      .catch((error) => {
-        console.error('Error al cargar los Pokémon:', error);
-      });
+    this.searchPokemon();
+    // this.pokemonService
+    //   .getAllPokemon()
+    //   .then((pokemonList: Pokemon[]) => {
+    //     this.pokemonList = pokemonList;
+    //     // Inicializar con todos los Pokémon
+    //   })
+    //   .catch((error) => {
+    //     console.error('Error al cargar los Pokémon:', error);
+    //   });
   }
 
   // Método para realizar la búsqueda en la API
