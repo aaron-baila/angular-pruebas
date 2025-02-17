@@ -30,7 +30,12 @@
             <div id="buttontopPicture2"></div>
           </div>
           <div id="picture">
-            <img *ngIf="pokemon" class="listing-image" [src]="pokemon.image" alt="{{ pokemon.name }}" />
+            <img
+              *ngIf="pokemon"
+              class="listing-image"
+              [src]="pokemon.image"
+              alt="{{ pokemon.name }}"
+            />
           </div>
           <div id="buttonbottomPicture"></div>
           <div id="speakers">
@@ -76,7 +81,6 @@
             ><br /><br />
           </div>
         </div>
-       
 
         <!-- Botones de la Pokedex -->
         <div id="blueButtons1">
@@ -101,15 +105,14 @@
         <div id="barbutton4"></div>
         <div id="yellowBox1">
           <!-- Formulario de búsqueda -->
-          <form (ngSubmit)="searchPokemon()">
+          <form (ngSubmit)="searchPokemon()" >
             <input
               type="text"
-              placeholder="Buscar Pokémon por nombre o número"
+              placeholder="Buscar"
               [(ngModel)]="searchTerm"
               name="searchTerm"
               (input)="searchPokemon()"
             />
-            <button class="primary" type="submit">Buscar</button>
           </form>
         </div>
         <div id="yellowBox2"></div>

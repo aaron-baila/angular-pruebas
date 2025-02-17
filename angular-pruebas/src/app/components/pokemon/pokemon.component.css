@@ -1027,3 +1027,22 @@
   transform: scale(10);
   margin: 10em;
 } */
+
+
+  
+input {
+	background: none;
+	width: 100%; /* Hace que el campo de texto ocupe todo el ancho disponible */
+	/* height: 4em; Ajusta la altura del input */
+	/* padding: 0; Da algo de espacio interno */
+	margin-top: 1em;
+	border: none; /* Elimina el borde predeterminado */
+	/* border-radius: 10px; Redondea las esquinas del input */
+	outline: none; /* Elimina el contorno del input */
+	text-align: center; /* Centra el texto dentro del input */
+	
+	font-size: 1.5em; /* Aumenta el tamaño de la fuente */
+	font-weight: bold; /* Pone el texto en negrita */
+  }
+  
+  
