@@ -11,34 +11,31 @@ import { CommonModule } from '@angular/common';
   styleUrls: ['./pokemon.component.css'],
 })
 export class PokemonComponent {
-  pokemonList: Pokemon[] = []; // Lista de Pokémon encontrados
-  searchTerm: string = '1'; // Término de búsqueda
-  pokemonService: PokemonService;
-  noResults: boolean = false; // Indica si no hay resultados
+  searchTerm: string = ''; // Término de búsqueda inicial
+  pokemon: Pokemon | null = null; // Pokémon encontrado, inicializado como null
+  noResults: boolean = false; // Indica si no se encuentran resultados
 
-  constructor(pokemonService: PokemonService) {
-    this.pokemonService = pokemonService;
-  }
- ngOnInit(): void {
-  this.searchPokemon();
+  constructor(private pokemonService: PokemonService) {}
+
+  ngOnInit(): void {
+    this.searchPokemon(); // Llamar al método de búsqueda cuando se inicializa el componente
   }
 
   // Método para realizar la búsqueda en la API
   async searchPokemon() {
     if (this.searchTerm.trim() !== '') {
-      // Realizar la búsqueda en la API
       const results = await this.pokemonService.searchPokemon(this.searchTerm);
-
-      if (results.length > 0) {
-        this.pokemonList = results; // Asignar los resultados de la búsqueda
-        this.noResults = false;
+      
+      if (results) {
+        this.pokemon = results; // Si hay resultados, asignamos el Pokémon encontrado
+        this.noResults = false; // No hay error de resultados
       } else {
-        this.pokemonList = [];
-        this.noResults = true; // Si no hay resultados, mostrar mensaje
+        this.pokemon = null; // Si no se encuentra un Pokémon, asignamos null
+        this.noResults = true; // Establecemos que no hubo resultados
       }
     } else {
-      this.pokemonList = [];
-      this.noResults = false; // Si no se ingresa nada, no mostrar resultados
+      this.pokemon = null; // Si no hay término de búsqueda, no mostramos ningún Pokémon
+      this.noResults = false; // No hay error, solo no hay búsqueda
     }
   }
 }
