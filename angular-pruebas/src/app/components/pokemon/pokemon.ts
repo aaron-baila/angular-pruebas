@@ -6,4 +6,5 @@ export interface Pokemon {
   type: string;
   height: number;
   description: string;
+  genus: string;
 }

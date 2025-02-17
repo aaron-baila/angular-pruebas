@@ -52,7 +52,15 @@ export class PokemonService {
         const speciesResponse = await fetch(speciesUrl);
         const speciesData = await speciesResponse.json();
 
-        const description = speciesData.flavor_text_entries.find((entry: any) => entry.language.name === 'es')?.flavor_text || 'Descripción no disponible';
+        // Buscar el "genus" (tipo corto del Pokémon, como "The Duck Pokémon")
+        const genus =
+          speciesData.genera.find((entry: any) => entry.language.name === 'es')
+            ?.genus || 'Tipo no disponible';
+
+        const description =
+          speciesData.flavor_text_entries.find(
+            (entry: any) => entry.language.name === 'es'
+          )?.flavor_text || 'Descripción no disponible';
 
         return [
           {
@@ -62,6 +70,7 @@ export class PokemonService {
             type: data.types[0].type.name,
             weight: data.weight,
             height: data.height,
+            genus: genus,
             description: description,
           },
         ];
