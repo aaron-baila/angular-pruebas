@@ -19,16 +19,26 @@ export class PokemonService {
     {
       id: 4,
       image: `${this.baseUrl}/4.png`,
-      name: 'squirtle',
+      name: 'charmander',
     },{
       id: 7,
       image: `${this.baseUrl}/7.png`,
-      name: 'charmander',
+      name: 'squirtle',
     },
   ];
  
-  getAllPokemon(): Pokemon[]{
-    return this.pokemonList;
+  getAllPokemon(): Observable<Pokemon[]> {
+    return this.http.get(`${this.baseUrl}?limit=1000`).pipe(
+      map((response: any) => {
+        return response.results.map((pokemon: any) => {
+          return {
+            id: pokemon.url.split('/').filter((x) => x).pop(),
+            name: pokemon.name,
+            image: `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${pokemon.url.split('/').filter((x) => x).pop()}.png`,
+          };
+        });
+      })
+    );
   }
 
   getPokemonById(id:number): Pokemon | undefined {
