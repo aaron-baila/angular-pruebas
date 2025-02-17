@@ -1,0 +1,8 @@
+.listing-image {
+  transform: scale(3);
+  margin: 2em;
+}
+/* .listing-image:hover {
+  transform: scale(10);
+  margin: 10em;
+} */
