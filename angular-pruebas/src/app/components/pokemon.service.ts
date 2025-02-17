@@ -5,34 +5,40 @@ import { Pokemon } from './pokemon/pokemon';
   providedIn: 'root',
 })
 export class PokemonService {
-  constructor() {}
-  
-  readonly baseUrl =
-    'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon';
-  
-    pokemonList: Pokemon[] = [
-    {
-      id: 1,
-      image: `${this.baseUrl}/1.png`,
-      name: 'bulbasaur',
-    },
-    {
-      id: 4,
-      image: `${this.baseUrl}/4.png`,
-      name: 'squirtle',
-    },{
-      id: 7,
-      image: `${this.baseUrl}/7.png`,
-      name: 'charmander',
-    },
-  ];
- 
-  getAllPokemon(): Pokemon[]{
-    return this.pokemonList;
+  url = 'https://pokeapi.co/api/v2/pokemon';
+
+  // Método para obtener todos los Pokémon
+  async getAllPokemon(): Promise<Pokemon[]> {
+    try {
+      const response = await fetch(this.url);
+      const data = await response.json();  // Convertir la respuesta a formato JSON
+
+      if (data.results) {
+        const pokemonList = await Promise.all(
+          data.results.map(async (pokemon: { name: string; url: string }) => {
+            const pokemonDetails = await this.getPokemonDetails(pokemon.url);
+            return {
+              name: pokemon.name,
+              id: pokemonDetails.id,
+              image: pokemonDetails.sprites.front_default, // Obtén la imagen del Pokémon
+            };
+          })
+        );
+        return pokemonList;
+      } else {
+        throw new Error('No se encontraron resultados.');
+      }
+    } catch (error) {
+      console.error('Error al obtener los Pokémon:', error);
+      throw error;  // Lanza el error para que el componente pueda manejarlo
+    }
   }
 
-  getPokemonById(id:number): Pokemon | undefined {
-    return this.pokemonList.find((pokemon) => pokemon.id === id);
+  // Método para obtener los detalles adicionales de un Pokémon
+  async getPokemonDetails(url: string): Promise<any> {
+    const response = await fetch(url);
+    return await response.json();
+  }
 
-  } 
+ 
 }

@@ -1,17 +1,23 @@
-<h1>name</h1>
-<h2>id</h2>
-<img src="image" alt="name" />
-
 <section>
-  <form>
-    <input type="text" placeholder="filter by number" />
-    <button class="primary"></button>
-  </form>
-  <section class="results">
-    <app-pokemon 
-    *ngFor="let pokemon of pokemonList"
-    [pokemon]="pokemon">
-    </app-pokemon>
-    <!-- <app-pokemon [pokemon]="pokemon"></app-pokemon> -->
+    <form (ngSubmit)="filterPokemons()">
+      <input
+        type="text"
+        placeholder="Buscar Pokémon por nombre o número"
+        [(ngModel)]="searchTerm"
+        name="searchTerm"
+        (input)="filterPokemons()"  
+      />
+      <button class="primary" type="submit">Buscar</button>
+    </form>
+  
+    <!-- Si no hay resultados, mostrar mensaje -->
+    <div *ngIf="filteredPokemonList.length === 0" class="no-results">
+      No se encontraron Pokémon.
+    </div>
+  
+    <!-- Mostrar los Pokémon filtrados -->
+    <section class="results">
+      <app-pokemon *ngFor="let pokemon of filteredPokemonList" [pokemon]="pokemon"></app-pokemon>
+    </section>
   </section>
-</section>
+  

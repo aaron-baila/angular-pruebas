@@ -1,12 +1,11 @@
 import { Component, Input } from '@angular/core';
 import { Pokemon } from './pokemon';
+
 @Component({
   selector: 'app-pokemon',
-  imports: [],
   templateUrl: './pokemon.component.html',
-  styleUrl: './pokemon.component.css',
+  styleUrls: ['./pokemon.component.css'],
 })
 export class PokemonComponent {
- 
-  @Input() pokemon!: Pokemon;
+  @Input() pokemon!: Pokemon;  // Recibe un Pokémon como entrada
 }
