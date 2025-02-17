@@ -13,11 +13,13 @@
   <!-- Mostrar mensaje si no se encuentran resultados -->
   <div *ngIf="noResults" class="no-results">
     No se encontraron Pokémon.
+    <app-pokemon></app-pokemon>
   </div>
 
   <!-- Mostrar los Pokémon encontrados -->
   <section class="results">
     <app-pokemon *ngFor="let pokemon of pokemonList" [pokemon]="pokemon"></app-pokemon>
+    <!-- <app-pokemon *ngFor="let pokemon of pokemonList" [pokemon]="pokemon"></app-pokemon> -->
   </section>
 </section>
 

@@ -13,12 +13,11 @@ import { FormsModule } from '@angular/forms';
 })
 export class HomeComponent {
   pokemonList: Pokemon[] = []; // Todos los Pokémon obtenidos
-  searchTerm: string = '1'; // Término de búsqueda
+  searchTerm: string = ''; // Término de búsqueda
   pokemonService: PokemonService = inject(PokemonService);
   noResults: boolean = false; // Flag para indicar si no hay resultados
 
   constructor() {
-    this.searchPokemon();
     // this.pokemonService
     //   .getAllPokemon()
     //   .then((pokemonList: Pokemon[]) => {
