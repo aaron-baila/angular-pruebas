@@ -47,7 +47,9 @@
         </div>
         <div id="bigbluebutton"></div>
         <div id="barbutton1"></div>
-        <div id="barbutton2"></div>
+        <div id="barbutton2">
+          <button id="borrarbutton" (click)="clearSearch()">Borrar</button>
+        </div>
         <div id="cross">
           <div id="leftcross">
             <div id="leftT"></div>
@@ -77,49 +79,52 @@
             <strong>Peso:</strong> {{ pokemon.weight }}<br /><br />
             <strong>{{ pokemon.genus }}</strong
             ><br />
-            <strong>{{ pokemon.description }}</strong
-            ><br /><br />
+            <p>{{ pokemon.description }}</p>
+            <br /><br />
           </div>
         </div>
 
         <!-- Botones de la Pokedex -->
         <div id="blueButtons1">
-          <div class="blueButton">1</div>
-          <div class="blueButton">2</div>
-          <div class="blueButton">3</div>
-          <div class="blueButton">4</div>
-          <div class="blueButton">5</div>
+          <div class="blueButton" (click)="addNumber(1)">1</div>
+          <div class="blueButton" (click)="addNumber(2)">2</div>
+          <div class="blueButton" (click)="addNumber(3)">3</div>
+          <div class="blueButton" (click)="addNumber(4)">4</div>
+          <div class="blueButton" (click)="addNumber(5)">5</div>
         </div>
 
         <div id="blueButtons2">
-          <div class="blueButton">6</div>
-          <div class="blueButton">7</div>
-          <div class="blueButton">8</div>
-          <div class="blueButton">9</div>
-          <div class="blueButton">0</div>
+          <div class="blueButton" (click)="addNumber(6)">6</div>
+          <div class="blueButton" (click)="addNumber(7)">7</div>
+          <div class="blueButton" (click)="addNumber(8)">8</div>
+          <div class="blueButton" (click)="addNumber(9)">9</div>
+          <div class="blueButton" (click)="addNumber(0)">0</div>
         </div>
 
-        <div id="miniButtonGlass4"></div>
-        <div id="miniButtonGlass5"></div>
-        <div id="barbutton3"></div>
-        <div id="barbutton4"></div>
         <div id="yellowBox1">
           <!-- Formulario de búsqueda -->
-          <form (ngSubmit)="searchPokemon()" >
+          <form (ngSubmit)="searchPokemon()">
             <input
               type="text"
               placeholder="Buscar"
               [(ngModel)]="searchTerm"
               name="searchTerm"
               (input)="searchPokemon()"
+              readonly
             />
           </form>
         </div>
+
         <div id="yellowBox2"></div>
         <div id="bg_curve1_right"></div>
         <div id="bg_curve2_right"></div>
         <div id="curve1_right"></div>
         <div id="curve2_right"></div>
+
+        <!-- Botón para borrar -->
+        <!-- <div id="deleteButton">
+          <button (click)="clearSearch()">Borrar</button>
+        </div> -->
       </div>
     </div>
   </section>

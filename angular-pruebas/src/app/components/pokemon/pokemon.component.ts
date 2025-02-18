@@ -14,6 +14,16 @@ export class PokemonComponent {
   searchTerm: string = ''; // Término de búsqueda inicial
   pokemon: Pokemon | null = null; // Pokémon encontrado, inicializado como null
   noResults: boolean = false; // Indica si no se encuentran resultados
+  
+  addNumber(num: number) {
+    this.searchTerm += num; // Agrega el número al campo de búsqueda
+    this.searchPokemon();
+  }
+
+  clearSearch() {
+    this.searchTerm = ''; // Borra el campo de búsqueda
+    this.searchPokemon();
+  }
 
   constructor(private pokemonService: PokemonService) {}
 
@@ -23,6 +33,7 @@ export class PokemonComponent {
 
   // Método para realizar la búsqueda en la API
   async searchPokemon() {
+    console.log("Buscando Pokémon con el término:", this.searchTerm);
     if (this.searchTerm.trim() !== '') {
       const results = await this.pokemonService.searchPokemon(this.searchTerm);
       
