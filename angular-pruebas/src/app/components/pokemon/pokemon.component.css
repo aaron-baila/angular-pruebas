@@ -733,20 +733,35 @@
     -moz-border-radius: 10px;
     -o-border-radius: 10px;
 
-    background: linear-gradient(top, #307bfb 0%, #0530e5 80%);
+    background: linear-gradient(to bottom, #307bfb 0%, #0530e5 80%);
     background: -webkit-linear-gradient(top, #307bfb 0%, #0530e5 80%);
     background: -moz-linear-gradient(top, #307bfb 0%, #0530e5 80%);
     background: -o-linear-gradient(top, #307bfb 0%, #0530e5 80%);
 
-    box-shadow: -1px 2px #001c91;
-    -webkit-box-shadow: -1px 2px #001c91;
-    -moz-box-shadow: -1px 2px #001c91;
-    -o-box-shadow: -1px 2px #001c91;
+    box-shadow: inset 3px 3px 6px rgba(255, 255, 255, 0.2),
+      /* Luz superior */ inset -3px -3px 6px rgba(0, 0, 0, 0.6),
+      /* Sombra inferior */ -1px 2px #001c91; /* Sombra externa */
 
     text-align: center;
     color: white;
     font-size: 1.5em; /* Aumenta el tamaño de la fuente */
     font-weight: bold; /* Pone el texto en negrita */
+
+    text-shadow: -2px -2px 3px rgba(0, 0, 0, 0.8),
+      /* Sombra oscura para efecto hundido */ 2px 2px 3px
+        rgba(255, 255, 255, 0.2); /* Iluminación superior */
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: transform 0.1s, box-shadow 0.1s;
+  }
+
+  .blueButton:active {
+    transform: scale(0.95);
+    box-shadow: inset 2px 2px 5px rgba(255, 255, 255, 0.1),
+      inset -2px -2px 5px rgba(0, 0, 0, 0.7);
   }
 
   div#barbutton3 {

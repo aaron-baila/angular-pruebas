@@ -1,4 +1,4 @@
-import { Pokemon } from './pokemon/pokemon';  // Asegúrate de que esta ruta sea correcta
+import { Pokemon } from './pokemon/pokemon'; // Asegúrate de que esta ruta sea correcta
 import { Injectable } from '@angular/core';
 
 @Injectable({
