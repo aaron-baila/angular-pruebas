@@ -16,6 +16,7 @@
             "outputPath": "dist/angular-pruebas",
             "index": "src/index.html",
             "browser": "src/main.ts",
+            "baseHref": "/angular-pruebas/",
             "polyfills": [
               "zone.js"
             ],
@@ -45,7 +46,8 @@
                   "maximumError": "20kb"
                 }
               ],
-              "outputHashing": "all"
+              "outputHashing": "all",
+              "baseHref": "/angular-pruebas/"
             },
             "development": {
               "optimization": false,
@@ -89,6 +91,9 @@
             ],
             "scripts": []
           }
+        },
+        "deploy": {
+          "builder": "angular-cli-ghpages:deploy"
         }
       }
     }
